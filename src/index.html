@@ -2,30 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <title>search gallery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="./css/styles.css" />
-
-    <title>Homework-11</title>
   </head>
   <body>
-    <body>
-    <div>
-      <form action="" class="form">
-        <input type="text" placeholder="Search images..." />
-        <button type="submit" class="btn">Search</button>
-      </form>
-      <ul class="gallery"></ul>
+    <div class="search">
+      <div class="container">
+        <form class="form">
+          <input
+            class="input"
+            name="search"
+            required
+            placeholder="Search images..."
+          />
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <ul class="gallery-list"></ul>
+        <button
+          class="btn btn-load is-hidden"
+          type="button"
+          data-action="load-more"
+        >
+          Load more
+        </button>
+        <span hidden></span>
+      </div>
     </div>
-
-
     <script type="module" src="./main.js"></script>
   </body>
 </html>
