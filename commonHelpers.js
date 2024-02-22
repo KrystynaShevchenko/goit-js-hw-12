@@ -1,26 +1,12 @@
-import{a as O,S as R,i as f}from"./assets/vendor-527658dd.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const s of e)if(s.type==="childList")for(const c of s.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&l(c)}).observe(document,{childList:!0,subtree:!0});function o(e){const s={};return e.integrity&&(s.integrity=e.integrity),e.referrerPolicy&&(s.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?s.credentials="include":e.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function l(e){if(e.ep)return;e.ep=!0;const s=o(e);fetch(e.href,s)}})();const a={form:document.querySelector(".form"),gallery:document.querySelector(".gallery-list"),loader:document.querySelector("span"),loadMoreBtn:document.querySelector('[data-action="load-more"]')};let i=1,h=0,u="",p=0;const g=40,D=O.create({headers:{"Content-Type":"application/json"},params:{image_type:"photo",orientation:"horizontal",safesearch:!0}});a.form.addEventListener("submit",I);a.loadMoreBtn.addEventListener("click",T);async function I(t){t.preventDefault(),i=1,a.gallery.innerHTML="",L(),v(),u=t.currentTarget.elements.search.value;try{const o=await y(u);o.total?(w(o),b(),i+=1,h=o.totalHits/g):d("Sorry, there are no images matching your search query. Please try again!")}catch(o){d(o.message)}finally{m()}a.form.reset()}async function y(t){const r=new URLSearchParams({per_page:g,page:i});try{return(await D.get(`https://pixabay.com/api/?key=41464538-044fa7fe64ee4a60fb4972757&q=${t}&${r}`)).data}catch(o){d(o.message)}}function w(t){const l=t.hits.map(n=>({preview:n.webformatURL,original:n.largeImageURL,description:n.tags,views:n.views,comments:n.comments,downloads:n.downloads,likes:n.likes})).reduce((n,{preview:S,original:M,description:x,views:B,comments:$,downloads:q,likes:P})=>n+`<li class="gallery">
-          <a class="gallery-link" href=${M} >       
-           <img
-            class="gallery-image"
-            src=${S}
-            alt="${x}"
-            />          <ul class="desc">
-            <li class="desc-item">
-              <h2 class="desc-title">likes</h2>
-              <p class="desc-text">${P}</p>
-            </li>
-            <li class="desc-item">
-              <h2 class="desc-title">views</h2>
-              <p class="desc-text">${B}</p>
-            </li>
-            <li class="desc-item">
-              <h2 class="desc-title">comments</h2>
-              <p class="desc-text">${$}</p>
-            </li>
-            <li class="desc-item">
-              <h2 class="desc-title">downloads</h2>
-              <p class="desc-text">${q}</p>
-            </li>
-          </ul></a>
-        </li>`,"");a.gallery.insertAdjacentHTML("beforeend",l),p=document.querySelector(".gallery").getBoundingClientRect().height*2,new R(".gallery a",{captionsData:"alt",captionDelay:250}).refresh()}function d(t="Something went wrong!"){f.error({position:"topRight",message:t})}async function T(t){if(v(),L(),i>h)return m(),f.show({position:"topRight",message:"We're sorry, but you've reached the end of search results."});try{const r=await y(u);w(r),E(p),b(),i+=1}catch(r){d(r.message)}finally{m()}}function L(){a.loader.hidden=!1,a.loader.classList.add("loader")}function m(){a.loader.hidden=!0,a.loader.classList.remove("loader")}function b(){a.loadMoreBtn.classList.remove("is-hidden")}function v(){a.loadMoreBtn.classList.add("is-hidden")}function E(t){window.scrollBy({top:t,behavior:"smooth"})}
+import{a as w,S as P,i as q}from"./assets/vendor-64b55ca9.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const s of r.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&a(s)}).observe(document,{childList:!0,subtree:!0});function c(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function a(e){if(e.ep)return;e.ep=!0;const r=c(e);fetch(e.href,r)}})();async function h(o,t){const c="https://pixabay.com",a="/api/",e="?key=42408826-646f1c33dda85bc33c99aac2a",r=`&q=${o}&image_type=photo&orientation=horizontal&safesearch=true&per_page=15&page=${t}`,s=c+a+e+r;return(await w.get(s)).data}const u=document.querySelector(".gallery");function p(o){const t=o.hits.map(({webformatURL:a,largeImageURL:e,tags:r,likes:s,views:f,comments:S,downloads:v})=>`<li class="gallery-item">
+  <a class="gallery-link" href="${e}">
+    <img class="gallery-img" src="${a}" alt="${r}" />
+  <div class="image-description">
+    <p><b>Likes: </b>${s}</p>
+    <p><b>Views: </b>${f}</p>
+    <p><b>Comments: </b>${S}</p>
+    <p><b>Downloads: </b>${v}</p>
+  </div>
+  </a>
+</li>`).join("");u.insertAdjacentHTML("beforeend",t),new P(".gallery a",{captions:!0,captionDelay:250,captionsData:"alt",captionPosition:"bottom"}).refresh()}const $=document.querySelector(".img-search-form"),g=document.querySelector(".loader"),m=document.querySelector(".load-more-btn");let l,n,y;$.addEventListener("submit",M);m.addEventListener("click",O);async function M(o){if(o.preventDefault(),b(),u.innerHTML="",l=o.target.elements.query.value.trim(),n=1,l===""){i("Sorry, there are no search terms entered. Please try again!");return}L();try{const t=await h(l,n);if(y=Math.ceil(t.totalHits/15),t.totalHits===0){d(),i("Sorry, there are no images matching your search query. Please try again!");return}p(t)}catch(t){i(t)}d(),E(),o.target.reset()}async function O(){n+=1,L();try{const t=await h(l,n);p(t)}catch(t){i(t)}d(),E();const o=u.firstElementChild.getBoundingClientRect().height;scrollBy({behavior:"smooth",top:o*2})}function x(){m.classList.remove("hidden")}function b(){m.classList.add("hidden")}function L(){g.classList.remove("hidden")}function d(){g.classList.add("hidden")}function i(o){q.error({message:o,messageColor:"white",backgroundColor:"red",position:"topRight"})}function E(){n>=y?(b(),i("We're sorry, but you've reached the end of search results.")):x()}
 //# sourceMappingURL=commonHelpers.js.map

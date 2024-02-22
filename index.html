@@ -4,42 +4,40 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>search gallery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
+    />
+    <title>GOIT-js-hw-12</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
     />
     
     <script type="module" crossorigin src="/goit-js-hw-12/commonHelpers.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-527658dd.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-64b55ca9.js">
     <link rel="stylesheet" href="/goit-js-hw-12/assets/vendor-cf6910df.css">
-    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-632d1dfe.css">
+    <link rel="stylesheet" href="/goit-js-hw-12/assets/index-67573900.css">
   </head>
   <body>
-    <div class="search">
-      <div class="container">
-        <form class="form">
-          <input
-            class="input"
-            name="search"
-            required
-            placeholder="Search images..."
-          />
-          <button class="btn" type="submit">Search</button>
-        </form>
-        <ul class="gallery-list"></ul>
-        <button
-          class="btn btn-load is-hidden"
-          type="button"
-          data-action="load-more"
-        >
-          Load more
-        </button>
-        <span hidden></span>
-      </div>
+    <form class="img-search-form">
+      <input
+        type="search"
+        name="query"
+        class="img-search-input"
+        placeholder="Search images..."
+      />
+      <button class="img-search-btn" type="submit">Search</button>
+    </form>
+
+    <ul class="gallery"></ul>
+
+    <div class="loader-container">
+      <span class="loader hidden"></span>
     </div>
+
+    <button type="button" class="load-more-btn hidden" hidden>Load more</button>
+
     
   </body>
 </html>
